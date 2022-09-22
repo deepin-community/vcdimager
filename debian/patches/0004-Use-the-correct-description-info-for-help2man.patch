@@ -1,0 +1,55 @@
+From: Baptiste Beauplat <lyknode@cilg.org>
+Date: Sun, 20 Dec 2020 13:58:43 +0100
+Subject: Use the correct description info for help2man
+
+Forwarded: https://savannah.gnu.org/support/?110407
+---
+ frontends/cli/Makefile.am | 10 ++++++++--
+ frontends/xml/Makefile.am | 13 +++++++++++--
+ 2 files changed, 19 insertions(+), 4 deletions(-)
+
+diff --git a/frontends/cli/Makefile.am b/frontends/cli/Makefile.am
+index 17e9b32..67e8027 100644
+--- a/frontends/cli/Makefile.am
++++ b/frontends/cli/Makefile.am
+@@ -31,8 +31,14 @@ vcd_info_LDADD = $(LIBISO9660_LIBS) $(LIBVCDINFO_LIBS) $(LIBVCD_LIBS) $(LIBPOPT_
+ man_MANS = vcdimager.1 cdxa2mpeg.1 vcd-info.1
+ 
+ if MAINTAINER_MODE
+-$(man_MANS): %.1: %$(EXEEXT)
+-	-$(HELP2MAN) --no-info --libtool -o $@ ./$<
++vcdimager.1: vcdimager$(EXEEXT)
++	-$(HELP2MAN) --name "Generates simple pbc-less VCD and SVCD disc images directly" --no-info --libtool -o $@ ./$<
++
++cdxa2mpeg.1: cdxa2mpeg$(EXEEXT)
++	-$(HELP2MAN) --name "Simple tool for converting RIFF CDXA file to plain mpeg" --no-info --libtool -o $@ ./$<
++
++vcd-info.1: vcd-info$(EXEEXT)
++	-$(HELP2MAN) --name "Display (selectively) the contents of a Video CD or CD image" --no-info --libtool -o $@ ./$<
+ endif
+ 
+ MAINTAINERCLEANFILES = $(man_MANS)
+diff --git a/frontends/xml/Makefile.am b/frontends/xml/Makefile.am
+index 1eb6cf9..34ab910 100644
+--- a/frontends/xml/Makefile.am
++++ b/frontends/xml/Makefile.am
+@@ -21,8 +21,17 @@ bin_PROGRAMS = vcdxbuild vcdxgen vcdxrip vcdxminfo
+ man_MANS = vcdxbuild.1 vcdxgen.1 vcdxrip.1 vcdxminfo.1
+ 
+ if MAINTAINER_MODE
+-$(man_MANS): %.1: %$(EXEEXT)
+-	-$(HELP2MAN) --no-info --libtool -o $@ ./$<
++vcdxbuild.1: vcdxbuild$(EXEEXT)
++	-$(HELP2MAN) --name "Builds a VCD/SVCD according to a supplied XML control file" --no-info --libtool -o $@ ./$<
++
++vcdxgen.1: vcdxgen$(EXEEXT)
++	-$(HELP2MAN) --name "XML VCD-description generator" --no-info --libtool -o $@ ./$<
++
++vcdxrip.1: vcdxrip$(EXEEXT)
++	-$(HELP2MAN) --name "Reverses the process for a given VCD or SVCD disc" --no-info --libtool -o $@ ./$<
++
++vcdxminfo.1: vcdxminfo$(EXEEXT)
++	-$(HELP2MAN) --name "Debugging tool for displaying MPEG stream properties" --no-info --libtool -o $@ ./$<
+ endif
+ 
+ MAINTAINERCLEANFILES = $(man_MANS)

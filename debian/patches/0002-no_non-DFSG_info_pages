@@ -1,0 +1,22 @@
+From: Andreas Barth <aba@ayous.org>
+Date: Thu, 11 Sep 2014 10:11:44 +0000
+Subject: Do not build nor ship non DFSG doc
+
+Bug-Debian: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=695794
+Forwarded: not-needed
+Last-Update: 2014-09-11
+
+===================================================================
+---
+ docs/Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/docs/Makefile.am b/docs/Makefile.am
+index ba61596..48b612b 100644
+--- a/docs/Makefile.am
++++ b/docs/Makefile.am
+@@ -1,4 +1,3 @@
+-info_TEXINFOS = vcdimager.texi vcd-info.texi vcdxrip.texi
+ vcdimager_TEXINFOS = fdl.texi gpl.texi glossary.texi
+ EXTRA_DIST = cvd-subtitles.pod svcd-ogt-subtitles.pod doxygen/Doxyfile.in doxygen/run_doxygen
+ 

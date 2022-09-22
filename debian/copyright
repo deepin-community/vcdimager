@@ -1,0 +1,69 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: vcdimager
+Upstream-Contact: Herbert Valerio Riedel <hvr@gnu.org>
+                  Rocky Bernstein <rocky@gnu.org>
+Source: https://ftp.gnu.org/gnu/vcdimager/
+Files-Excluded: docs/vcd-info.*
+                docs/vcdxrip.*
+                docs/vcdimager.*
+Comment: GFDL with unmodifiable sections (See: #695794)
+
+Files: *
+Copyright: 1998 Heiko Eissfeldt <heiko@colossus.escape.de>
+           2000 Jens B. Jorgensen <jbj1@ultraemail.net>
+           2000-2006 Herbert Valerio Riedel <hvr@gnu.org>
+           2002-2006, 2017-2018 Rocky Bernstein <rocky@gnu.org>
+License: GPL-2.0+
+
+Files: lib/sector.c
+Copyright: 1998-2002 Heiko Eissfeldt <heiko@colossus.escape.de>
+           2000 Herbert Valerio Riedel <hvr@gnu.org>
+           2002 Joerg Schilling
+License: GPL-2.0-only
+
+Files: debian/*
+Copyright: 2001 Viral Shah <viral@debian.org>
+           2001 Herbert Valerio Riedel <hvr@gnu.org>
+           2002 Kyle McMartin <kyle@debian.org>
+           2002-2007 2012 Nicolas Boullis <nboullis@debian.org>
+           2011 Regis Boudin <regis@debian.org>
+           2012 David Prévot <taffit@debian.org>
+           2014 Andreas Barth <aba@ayous.org>
+           2017-2018 Matthias Klose <doko@debian.org>
+           2017 Steve Langasek <steve.langasek@ubuntu.com>
+           2018 Niels Thykier <niels@thykier.net>
+           2020 Baptiste Beauplat <lyknode@cilg.org>
+License: GPL-2.0+
+
+License: GPL-2.0+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+License: GPL-2.0-only
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".

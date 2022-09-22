@@ -1,0 +1,67 @@
+From: Baptiste Beauplat <lyknode@cilg.org>
+Date: Sun, 20 Dec 2020 11:31:43 +0100
+Subject: Fix some spelling mistake in the code
+
+Forwarded: https://savannah.gnu.org/support/index.php?110406
+---
+ frontends/cli/vcd-info.c | 3 ++-
+ lib/inf.c                | 2 +-
+ lib/pbc.c                | 4 ++--
+ lib/vcd.c                | 2 +-
+ 4 files changed, 6 insertions(+), 5 deletions(-)
+
+diff --git a/frontends/cli/vcd-info.c b/frontends/cli/vcd-info.c
+index 3c1e71e..0abdfea 100644
+--- a/frontends/cli/vcd-info.c
++++ b/frontends/cli/vcd-info.c
+@@ -420,7 +420,8 @@ dump_psd (const vcdinfo_obj_t *p_vcdinfo, bool ext)
+           }
+           break;
+         default:
+-          fprintf (stdout, " PSD[%2d] (%s): unkown descriptor type (0x%2.2x)\n",
++          fprintf (stdout,
++                   " PSD[%2d] (%s): unknown descriptor type (0x%2.2x)\n",
+                    n, vcdinfo_ofs2str (p_vcdinfo, ofs->offset, ext), type);
+ 
+           fprintf (stdout, "  hexdump: ");
+diff --git a/lib/inf.c b/lib/inf.c
+index 3aae3d4..81f9a76 100644
+--- a/lib/inf.c
++++ b/lib/inf.c
+@@ -333,7 +333,7 @@ vcdinf_lid_t_cmp (vcdinfo_offset_t *a, vcdinfo_offset_t *b)
+     {
+       if (a->lid > b->lid) return +1;
+       if (a->lid < b->lid) return -1;
+-      vcd_warn ("LID %d at offset %d has same nunber as LID of offset %d",
++      vcd_warn ("LID %d at offset %d has same number as LID of offset %d",
+                 a->lid, a->offset, b->offset);
+     }
+   else if (a->lid) return -1;
+diff --git a/lib/pbc.c b/lib/pbc.c
+index 6192523..3581c1c 100644
+--- a/lib/pbc.c
++++ b/lib/pbc.c
+@@ -687,8 +687,8 @@ _vcd_pbc_node_write (const VcdObj_t *obj, const pbc_t *p_pbc, void *buf,
+ 		}
+ 	      else
+ 		vcd_error ("selection '%s': play item '%s'"
+-			   " is requried to be sequence or entry point"
+-			   " item for multi default selecton",
++			   " is required to be sequence or entry point"
++			   " item for multi default selection",
+ 			   p_pbc->id, p_pbc->item_id);
+ 	    }
+ 
+diff --git a/lib/vcd.c b/lib/vcd.c
+index a5f5b57..b445c86 100644
+--- a/lib/vcd.c
++++ b/lib/vcd.c
+@@ -2405,7 +2405,7 @@ vcd_obj_write_image (VcdObj_t *p_obj, VcdImageSink_t *p_image_sink,
+       {
+         int n, lastsect = p_obj->sectors_written;
+ 
+-        vcd_debug ("writting post-gap ('leadout pregap')...");
++        vcd_debug ("writing post-gap ('leadout pregap')...");
+ 
+         for (n = 0; n < p_obj->leadout_pregap; n++)
+           _write_m2_image_sector (p_obj, zero, lastsect++, 0, 0, SM_FORM2, 0);

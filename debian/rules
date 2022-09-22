@@ -1,0 +1,49 @@
+#!/usr/bin/make -f
+
+export DEB_CFLAGS_MAINT_PREPEND=-Wall
+export DEB_BUILD_MAINT_OPTIONS=hardening=+all
+
+LIBCDEV=$(shell dpkg-awk 'Provides:libc-dev' -- Package | sed -ne 's/^Package:[[:space:]]*//p' | head -1) | libc-dev
+BACKUP_FILES = frontends/cli/cdxa2mpeg.1 \
+	       frontends/cli/vcd-info.1 \
+	       frontends/cli/vcdimager.1 \
+	       frontends/xml/vcdxbuild.1 \
+	       frontends/xml/vcdxgen.1 \
+	       frontends/xml/vcdxminfo.1 \
+	       frontends/xml/vcdxrip.1
+
+%:
+	dh $@
+
+# Rebuild man from source
+override_dh_auto_configure:
+	set -e; for file in $(BACKUP_FILES); do \
+	    cp $$file $$file.orig; \
+	done
+
+	dh_auto_configure -- --enable-maintainer-mode
+
+# The tests crashes when run in parallel
+override_dh_auto_test:
+	dh_auto_test --no-parallel
+
+override_dh_missing:
+	rm -f debian/tmp/usr/lib/*/libvcdinfo.la
+	dh_missing --list-missing
+
+override_dh_makeshlibs:
+	dh_makeshlibs -a -N libvcdinfo0
+	dh_makeshlibs -p libvcdinfo0 -V 'libvcdinfo0 (>> 0.7.24)'
+
+override_dh_shlibdeps:
+	dh_shlibdeps -a -L libvcdinfo0 -l debian/libvcdinfo0/usr/lib
+
+override_dh_gencontrol:
+	dh_gencontrol -a -- -Vlibcdev="$(LIBCDEV)"
+
+execute_after_dh_auto_clean:
+	set -e; for file in $(BACKUP_FILES); do \
+	    if [ -r $$file.orig ]; then \
+	        mv $$file.orig $$file; \
+	    fi \
+	done
